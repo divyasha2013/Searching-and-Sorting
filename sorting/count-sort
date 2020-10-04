@@ -1,0 +1,37 @@
+import java.util.*;
+
+public class countsort
+{
+    public static int[] countsort(int[] input)
+    {
+        int n=input.length;
+        int r=10;
+        int[] fm=new int [r];
+
+        for(int val : input)
+        fm[val]++;
+
+        for(int i=1;i<fm.length;i++)
+        fm[i]+=fm[i-1];
+
+        int[] output=new int[n];
+
+        for(int i=n-1;i>=0;i--)
+        {
+            int val=input[i];
+            fm[val]--;
+            output[fm[val]]=val;
+        }
+
+        return output;
+    }    
+
+    public static void main(String[] args)
+    {
+        int[] arr={0,1,2,7,6,4,3,8,7,9,9,6,6,1,2,4,9,0,1,2,3,4,6,7};
+
+        System.out.println();
+        arr=countsort(arr);
+        System.out.println("sorted array ="+Arrays.toString(arr));        
+    }
+}
