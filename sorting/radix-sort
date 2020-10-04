@@ -1,0 +1,63 @@
+import java.util.*;
+
+public class radix_sort
+{
+    public static int[] countsort(int[] input,int div)
+    {
+        int n=input.length;
+        int r=10;
+        int[] fm=new int [r];
+
+        for(int val : input)
+        {
+            val = val / div % 10;
+            fm[val]++;
+        }
+
+        for(int i=1;i<fm.length;i++)
+        fm[i]+=fm[i-1];
+
+        int[] output=new int[n];
+
+        for(int i=n-1;i>=0;i--)
+        {
+            int val=input[i];
+
+            val = val / div % 10;
+
+            fm[val]--;
+            
+            output[fm[val]]=input[i];
+        }
+
+        return output;
+    }    
+
+    public static int[] radixsort(int[] input)
+    {
+        int max=0;
+
+        for(int val : input)
+        {
+            max=Math.max(max,val);
+        }
+
+        int div=1;
+
+        while(max/div>0)
+        {
+            input=countsort(input,div);
+            div=div*10;
+        }
+
+        return input;
+    }
+    public static void main(String[] args)
+    {
+        int[] arr={259,68,347,924,136,425,719,88,463,527,634,725,978};
+
+        System.out.println();
+        arr=radixsort(arr);
+        System.out.println("sorted array ="+Arrays.toString(arr));        
+    }
+}
