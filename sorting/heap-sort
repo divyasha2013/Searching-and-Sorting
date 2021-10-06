@@ -1,0 +1,52 @@
+import java.util.*;
+class sorting
+{
+   // o(logn)
+    public static void downheapify(int[] arr,int n,int i)
+    {
+        int left=2*i+1;
+        int right=2*i+2;
+        int largest=i;
+
+        if(left<n && arr[left]>arr[largest])
+        largest=left;
+
+        if(right<n && arr[right]>arr[largest])
+        largest=right;
+
+        if(largest!=i)
+        {
+            swap(arr,i,largest);
+            downheapify(arr,n,largest);
+        }
+    }
+    
+    // o(nlgn)
+    public static void heap_sort(int[] arr)
+    {
+        //build a max heap
+        //swap first eleemnt at last position and heapify again
+        int n=arr.length;
+
+        //o(n)
+        for(int i=n/2-1;i>=0;i--)
+        downheapify(arr,n,i);
+
+        System.out.println("Max Heap="+Arrays.toString(arr));
+
+        //o(nlogn)
+        for(int i=n-1;i>0;i--)
+        {
+            swap(arr,i,0);
+            downheapify(arr,i,0);
+            System.out.println(Arrays.toString(arr));
+        }
+    }
+    
+    public static void main(String[] args)
+    {
+        int[] arr={5,67,2,89,-3,-56,478};
+        heap_sort(arr);
+        System.out.println("sorted array: "+Arrays.toString(arr));
+    }
+}
