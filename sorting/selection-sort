@@ -1,0 +1,25 @@
+import java.util.*;
+class sorting
+{
+   // o(n^2)
+    public static void selection_sort(int[] arr)
+    {
+        //smallest element takes its place in the beginning
+        for(int i=0;i<arr.length;i++)
+        {
+            for(int j=i+1;j<arr.length;j++)
+            {
+                if(arr[j]<arr[i])
+                swap(arr,i,j);
+            }
+            System.out.println(Arrays.toString(arr));
+        }
+    }
+    
+    public static void main(String[] args)
+    {
+        int[] arr={5,67,2,89,-3,-56,478};
+        selection_sort(arr);
+        System.out.println("sorted array: "+Arrays.toString(arr));
+    }
+}
