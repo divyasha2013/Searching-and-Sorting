@@ -1,0 +1,22 @@
+import java.util.*;
+class sorting
+{
+   // o(n^2)
+    public static void insertion_sort(int[] arr)
+    {
+        //split in two parts and inserts at right position
+        for(int i=1;i<arr.length;i++)
+        {
+            for(int j=i;j>0 && arr[j-1]>arr[j];j--)
+            swap(arr,j,j-1);
+            System.out.println(Arrays.toString(arr));
+        }
+    }
+    
+    public static void main(String[] args)
+    {
+        int[] arr={5,67,2,89,-3,-56,478};
+        insertion_sort(arr);
+        System.out.println("sorted array: "+Arrays.toString(arr));
+    }
+}
